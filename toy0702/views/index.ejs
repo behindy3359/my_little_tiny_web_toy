@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Node.js 채팅</title>
+  <style>
+    #messages { 
+      list-style-type: none; 
+      margin: 0; padding: 0;
+    }
+    #messages li { 
+      padding: 5px 10px; 
+    }
+    #messages li:nth-child(odd) {
+       background: #eee; 
+    }
+    #nickname-input { 
+      width: 100px;
+      margin-right: 10px; 
+    }
+  </style>
+</head>
+<body>
+  <ul id="messages"></ul>
+  <form id="chat-form">
+    <input id="nickname-input" type="text" placeholder="닉네임" />
+    <input id="chat-input" type="text" autocomplete="off" placeholder="메시지 입력" />
+    <button>전송</button>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    const nicknameInput = document.getElementById('nickname-input');
+    const messages = document.getElementById('messages');
+
+    socket.on('set nickname', (nickname) => {
+      nicknameInput.value = nickname;
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value) {
+        socket.emit('chat message', {
+          nickname: nicknameInput.value,
+          message: input.value
+        });
+        input.value = '';
+      }
+    });
+
+    socket.on('chat message', (data) => {
+      const li = document.createElement('li');
+      li.textContent = `${data.nickname}: ${data.message}`;
+      messages.appendChild(li);
+    });
+  </script>
+</body>
+</html>
