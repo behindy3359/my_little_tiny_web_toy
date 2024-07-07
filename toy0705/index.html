@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG 별점 시스템</title>
+    <style>
+        .star-stat {
+            display: inline-block;
+        }
+        .star-wrapper {
+            display: flex;
+        }
+        .star {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            margin-right: 5px;
+        }
+        .star-half {
+            width: 15px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            overflow: hidden;
+        }
+        .star-half.right {
+            right: 0;
+            transform: scaleX(-1);
+        }
+        .star-half path {
+            fill: #ddd;
+            transition: fill 0.2s;
+        }
+        .star-half.active path {
+            fill: gold;
+        }
+        #rating-value {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="star-stat">
+        <div class="star-wrapper">
+            <div class="star" data-rating="1">
+                <svg class="star-half left" data-rating="0.5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+                <svg class="star-half right" data-rating="1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+            </div>
+            <div class="star" data-rating="2">
+                <svg class="star-half left" data-rating="1.5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+                <svg class="star-half right" data-rating="2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+            </div>
+            <div class="star" data-rating="3">
+                <svg class="star-half left" data-rating="2.5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+                <svg class="star-half right" data-rating="3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+            </div>
+            <div class="star" data-rating="4">
+                <svg class="star-half left" data-rating="3.5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+                <svg class="star-half right" data-rating="4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+            </div>
+            <div class="star" data-rating="5">
+                <svg class="star-half left" data-rating="4.5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+                <svg class="star-half right" data-rating="5" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 71.059123,-17.272473 70.828646,-17.741178 47.602673,29.14795 -4.1905476,36.597108 33.22629,73.17627 l -8.920386,51.56016 46.351176,-24.28224 0.402043,0.21188 z" transform="translate(4.8292683,18.28223)" />
+                </svg>
+            </div>
+        </div>
+        <span id="rating-value"></span>
+    </div>
+
+    <script>
+        const starWrapper = document.querySelector('.star-wrapper');
+        const starHalves = document.querySelectorAll('.star-half');
+        const ratingValue = document.getElementById('rating-value');
+        let currentRating = 0;
+
+        starWrapper.addEventListener('mousemove', handleMouseMove);
+        starWrapper.addEventListener('click', handleClick);
+        starWrapper.addEventListener('mouseleave', handleMouseLeave);
+
+        function handleMouseMove(e) {
+            const target = e.target.closest('.star-half');
+            if (target) {
+                const rating = parseFloat(target.dataset.rating);
+                updateStars(rating);
+            }
+        }
+
+        function handleClick(e) {
+            const target = e.target.closest('.star-half');
+            if (target) {
+                currentRating = parseFloat(target.dataset.rating);
+                updateStars(currentRating);
+                ratingValue.textContent = `${currentRating}/5`;
+            }
+        }
+
+        function handleMouseLeave() {
+            updateStars(currentRating);
+        }
+
+        function updateStars(rating) {
+            starHalves.forEach(half => {
+                if (parseFloat(half.dataset.rating) <= rating) {
+                    half.classList.add('active');
+                } else {
+                    half.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
